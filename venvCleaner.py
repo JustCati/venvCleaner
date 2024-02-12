@@ -9,6 +9,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description="Clean up the virtual environment")
     parser.add_argument("--path", default=os.path.join(os.path.expanduser('~'), ".local", "share", "virtualenvs", ""), help="Path to the virtual environments directory")
+    parser.add_argument("-t", "--time", default=3600, help="Time in seconds to wait before checking for new virtual environments (default: 3600)", type=int)
     parser.add_argument("--ignore-list", default=[], help="List of virtual environments NAMES to ignore", nargs="*")
     args = parser.parse_args()
 
@@ -35,7 +36,7 @@ def main():
                     continue
                 print(f"Removing {folder}")
                 shutil.rmtree(folder)
-        time.sleep(15)
+        time.sleep(args.time)
 
 
 
