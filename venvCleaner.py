@@ -34,8 +34,7 @@ def main():
 
         for folder, env in venvs:
             if not os.path.exists(env):
-                print(folder)
-                if folder.split("/")[-1] in args.ignore_list:
+                if folder.split("/")[-1].split("-")[0] in args.ignore_list:
                     print(f"Ignoring {folder}")
                     continue
                 print(f"Removing {folder}")
