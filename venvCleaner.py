@@ -17,15 +17,15 @@ def main():
     if args.path != "" and not os.path.exists(args.path):
         raise ValueError(f"The path {args.path} does not exist")
     
-    path = os.path.join(args.user, ".local", "share", "virtualenvs", "")
+    path = os.path.join(args.user, ".local", "share", "virtualenvs", "") if args.path == "" else args.path
     if not os.path.exists(path):
         raise ValueError(f"The path {path} does not exist")
 
     while True:
         venvs = []
-        for folder in os.listdir(args.path):
-            if os.path.isdir(os.path.join(args.path, folder)):
-                folderPath = os.path.join(args.path, folder)
+        for folder in os.listdir(path):
+            if os.path.isdir(os.path.join(path, folder)):
+                folderPath = os.path.join(path, folder)
                 for file in os.listdir(folderPath):
                     if file == ".project":
                         with open(os.path.join(folderPath, file), "r") as f:
