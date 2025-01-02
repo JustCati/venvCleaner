@@ -78,7 +78,3 @@ To run this script as a background service:
 ## License
 
 This script is provided under the MIT License.
-
---- 
-
-Let me know if you need further customization!
