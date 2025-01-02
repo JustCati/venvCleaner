@@ -8,7 +8,6 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser(description="Clean up the virtual environment")
-    parser.add_argument("-u", "--user", help="User Path", required=True)
     parser.add_argument("--path", default="", help="Path to the virtual environments directory")
     parser.add_argument("-t", "--time", default=3600, help="Time in seconds to wait before checking for new virtual environments (default: 3600)", type=int)
     parser.add_argument("--ignore-list", default=[], help="List of virtual environments NAMES to ignore", nargs="*")
@@ -17,7 +16,7 @@ def main():
     if args.path != "" and not os.path.exists(args.path):
         raise ValueError(f"The path {args.path} does not exist")
     
-    path = os.path.join(args.user, ".local", "share", "virtualenvs", "") if args.path == "" else args.path
+    path = os.path.join(os.path.expanduser('~'), ".local", "share", "virtualenvs", "") if args.path == "" else args.path
     if not os.path.exists(path):
         raise ValueError(f"The path {path} does not exist")
 
